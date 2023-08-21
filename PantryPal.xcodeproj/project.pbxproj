@@ -11,6 +11,10 @@
 		94BD199E2A92E6D700B4881D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD199D2A92E6D700B4881D /* ContentView.swift */; };
 		94BD19A02A92E6D900B4881D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BD199F2A92E6D900B4881D /* Assets.xcassets */; };
 		94BD19A32A92E6D900B4881D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BD19A22A92E6D900B4881D /* Preview Assets.xcassets */; };
+		94BD19B22A92ECB000B4881D /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD19B12A92ECB000B4881D /* InventoryItem.swift */; };
+		94BD19B42A92ECEA00B4881D /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD19B32A92ECEA00B4881D /* InventoryView.swift */; };
+		94BD19B72A92F34400B4881D /* InventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD19B62A92F34400B4881D /* InventoryItemView.swift */; };
+		94BD19B92A92F44800B4881D /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD19B82A92F44800B4881D /* InventoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		94BD199D2A92E6D700B4881D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		94BD199F2A92E6D900B4881D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94BD19A22A92E6D900B4881D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		94BD19B12A92ECB000B4881D /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
+		94BD19B32A92ECEA00B4881D /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		94BD19B62A92F34400B4881D /* InventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItemView.swift; sourceTree = "<group>"; };
+		94BD19B82A92F44800B4881D /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +59,8 @@
 		94BD199A2A92E6D700B4881D /* PantryPal */ = {
 			isa = PBXGroup;
 			children = (
-				94BD199B2A92E6D700B4881D /* PantryPalApp.swift */,
-				94BD199D2A92E6D700B4881D /* ContentView.swift */,
+				94BD19A92A92EB0500B4881D /* Core */,
+				94BD19AA2A92EB2300B4881D /* Supporting */,
 				94BD199F2A92E6D900B4881D /* Assets.xcassets */,
 				94BD19A12A92E6D900B4881D /* Preview Content */,
 			);
@@ -65,6 +73,82 @@
 				94BD19A22A92E6D900B4881D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		94BD19A92A92EB0500B4881D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19B52A92F1BD00B4881D /* Common */,
+				94BD19AB2A92EC1500B4881D /* Features */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		94BD19AA2A92EB2300B4881D /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				94BD199B2A92E6D700B4881D /* PantryPalApp.swift */,
+				94BD199D2A92E6D700B4881D /* ContentView.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		94BD19AB2A92EC1500B4881D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19AC2A92EC1B00B4881D /* Inventory */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		94BD19AC2A92EC1B00B4881D /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19AD2A92EC2400B4881D /* Models */,
+				94BD19B02A92EC5500B4881D /* ViewModels */,
+				94BD19AE2A92EC2E00B4881D /* Screens */,
+				94BD19AF2A92EC4C00B4881D /* Views */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
+		94BD19AD2A92EC2400B4881D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19B12A92ECB000B4881D /* InventoryItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94BD19AE2A92EC2E00B4881D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19B32A92ECEA00B4881D /* InventoryView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		94BD19AF2A92EC4C00B4881D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19B62A92F34400B4881D /* InventoryItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94BD19B02A92EC5500B4881D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				94BD19B82A92F44800B4881D /* InventoryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		94BD19B52A92F1BD00B4881D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +221,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94BD19B72A92F34400B4881D /* InventoryItemView.swift in Sources */,
+				94BD19B92A92F44800B4881D /* InventoryViewModel.swift in Sources */,
+				94BD19B22A92ECB000B4881D /* InventoryItem.swift in Sources */,
 				94BD199E2A92E6D700B4881D /* ContentView.swift in Sources */,
 				94BD199C2A92E6D700B4881D /* PantryPalApp.swift in Sources */,
+				94BD19B42A92ECEA00B4881D /* InventoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
