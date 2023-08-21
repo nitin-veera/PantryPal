@@ -9,7 +9,7 @@ import Foundation
 
 class InventoryViewModel: ObservableObject {
     
-    var InventoryItems = [
+    @Published var InventoryItems = [
         InventoryItem(itemName: "apple", itemType: .fruit, storageType: .pantry),
         InventoryItem(itemName: "broccoli", itemType: .veggie, storageType: .fridge),
         InventoryItem(itemName: "dino nuggets", itemType: .meal, storageType: .freezer),
