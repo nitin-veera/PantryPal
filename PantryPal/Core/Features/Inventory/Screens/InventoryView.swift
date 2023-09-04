@@ -11,24 +11,68 @@ struct InventoryView: View {
     @StateObject var viewModel = InventoryViewModel()
     @State private var isPresentingItem: InventoryItem? = nil
     @State private var isPresentingForm: Bool = false
+    @State private var selectedFilter: String = "All"
+    @Namespace var animation
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Color.element.ignoresSafeArea()
-            VStack (alignment: .leading ){
+            VStack (alignment: .leading, spacing: 0){
                 searchAndNotis
                 titleAndSlider
-                    HStack (spacing: 30) {
-                        Text("All")
+                    HStack {
+                        VStack {
+                            Text("All")
+                                .fontWeight(selectedFilter == "All" ? .semibold : .regular)
+                                .foregroundColor(selectedFilter == "All" ? .green : .black)
+                                .onTapGesture {
+                                    withAnimation(.easeInOut) {
+                                        self.selectedFilter = "All"
+                                    }
+                            }
+                            if selectedFilter == "All" {
+                                Capsule()
+                                    .foregroundColor(.green)
+                                    .frame(height: 3)
+                                    .matchedGeometryEffect(id: "filter", in: animation)
+                            } else {
+                                Capsule()
+                                    .foregroundColor(Color(.clear))
+                                    .frame(height: 3)
+                            }
+                        }
                         ForEach(InventoryItem.StorageType.allCases, id: \.name) { storageType in
                             HStack {
-                                Image(systemName: storageType.icon)
-                                Text(storageType.name)
+                                VStack {
+                                    HStack {
+                                        Image(systemName: storageType.icon)
+                                        Text(storageType.name)
+                                    }
+                                    .fontWeight(selectedFilter == storageType.name ? .semibold : .regular)
+                                    .foregroundColor(selectedFilter == storageType.name ? .green : .black)
+                                    
+                                    if selectedFilter == storageType.name {
+                                        Capsule()
+                                            .foregroundColor(.green)
+                                            .frame(height: 3)
+                                            .matchedGeometryEffect(id: "filter", in: animation)
+                                    } else {
+                                        Capsule()
+                                            .foregroundColor(Color(.clear))
+                                            .frame(height: 3)
+                                    }
+                                }
+                                .onTapGesture {
+                                    withAnimation(.easeInOut) {
+                                        self.selectedFilter = storageType.name
+                                    }
+                                }
                             }
                         }
                     }
                     .font(.subheadline)
                     .padding(.horizontal)
+                    .padding(.bottom, 0)
                 feedView
             }
             floatingButton
@@ -64,6 +108,7 @@ extension InventoryView {
                 }
             }
             .padding(.top)
+            
         }
     }
     
