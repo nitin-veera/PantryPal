@@ -60,8 +60,8 @@ struct InventoryItem: Identifiable {
             return self
         }
         
-        case fridge
         case pantry
+        case fridge
         case freezer
         
         var name: String {
@@ -69,6 +69,14 @@ struct InventoryItem: Identifiable {
             case .fridge: return "Fridge"
             case .pantry: return "Pantry"
             case .freezer: return "Freezer"
+            }
+        }
+        
+        var icon: String {
+            switch self {
+            case .pantry: return "cabinet"
+            case .fridge: return "refrigerator"
+            case .freezer: return "snowflake"
             }
         }
     }

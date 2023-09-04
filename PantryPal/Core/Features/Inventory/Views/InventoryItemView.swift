@@ -16,34 +16,48 @@ struct InventoryItemView: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-                .frame(width: 370, height: 70)
-                .cornerRadius(20)
-                .shadow(radius: 1)
-            HStack {
-                Text("\(item.itemName)")
-                    .padding()
-                    .font(.title3)
-                Spacer()
-                switch (item.amountRemaining) {
-                case .all:
-                    Text("Plenty Left")
-                        .padding()
-                        .font(.subheadline)
-                case .half:
-                    Text("Halfway There")
-                        .padding()
-                case .few:
-                    Text("Almost Out")
-                        .padding()
-                case .none:
-                    Text("All Out")
-                        .padding()
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color.element)
+                .northWestShadow()
+            HStack (spacing: 0) {
+                VStack {
+                    Image(systemName: "takeoutbag.and.cup.and.straw")
+                        .padding(.vertical)
+                        .padding(.leading)
+                    Spacer()
                 }
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("\(item.itemName)")
+                        .font(.title3).bold()
+                    Text("3 days in")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                .padding()
+                Spacer()
+                VStack(alignment: .trailing, spacing: 5) {
+                    switch (item.amountRemaining) {
+                    case .all:
+                        Text("Plenty Left")
+                            .font(.subheadline)
+                    case .half:
+                        Text("Halfway There")
+                            .font(.subheadline)
+                    case .few:
+                        Text("Almost Out")
+                            .font(.subheadline)
+                    case .none:
+                        Text("All Out")
+                            .font(.subheadline)
+                    }
+                    Text("\(item.storageType.name)")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                .padding()
             }
         }
-        .frame(width: 370, height: 70)
+        .padding(.horizontal)
     }
 }
 
