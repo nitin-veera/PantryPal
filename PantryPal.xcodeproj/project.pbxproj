@@ -10,6 +10,9 @@
 		9490D8422AA5852900044EDB /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490D8412AA5852900044EDB /* ViewExtension.swift */; };
 		9490D8442AA5854800044EDB /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490D8432AA5854800044EDB /* ColorExtension.swift */; };
 		9490D8472AA5980D00044EDB /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490D8462AA5980D00044EDB /* ButtonStyles.swift */; };
+		9490D8652AA7D6B400044EDB /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490D8642AA7D6B400044EDB /* ItemType.swift */; };
+		9490D8672AA7D6F700044EDB /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490D8662AA7D6F700044EDB /* StorageType.swift */; };
+		9490D8692AA7D76500044EDB /* AmountRemaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490D8682AA7D76500044EDB /* AmountRemaining.swift */; };
 		94BD199C2A92E6D700B4881D /* PantryPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD199B2A92E6D700B4881D /* PantryPalApp.swift */; };
 		94BD199E2A92E6D700B4881D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD199D2A92E6D700B4881D /* ContentView.swift */; };
 		94BD19A02A92E6D900B4881D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BD199F2A92E6D900B4881D /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 		9490D8412AA5852900044EDB /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewExtension.swift; path = PantryPal/Extensions/ViewExtension.swift; sourceTree = SOURCE_ROOT; };
 		9490D8432AA5854800044EDB /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorExtension.swift; path = PantryPal/Extensions/ColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		9490D8462AA5980D00044EDB /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		9490D8642AA7D6B400044EDB /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		9490D8662AA7D6F700044EDB /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
+		9490D8682AA7D76500044EDB /* AmountRemaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemaining.swift; sourceTree = "<group>"; };
 		94BD19982A92E6D700B4881D /* PantryPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PantryPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BD199B2A92E6D700B4881D /* PantryPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryPalApp.swift; sourceTree = "<group>"; };
 		94BD199D2A92E6D700B4881D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				94BD19B12A92ECB000B4881D /* InventoryItem.swift */,
+				9490D8642AA7D6B400044EDB /* ItemType.swift */,
+				9490D8662AA7D6F700044EDB /* StorageType.swift */,
+				9490D8682AA7D76500044EDB /* AmountRemaining.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,7 +255,9 @@
 			files = (
 				9490D8472AA5980D00044EDB /* ButtonStyles.swift in Sources */,
 				9490D8422AA5852900044EDB /* ViewExtension.swift in Sources */,
+				9490D8652AA7D6B400044EDB /* ItemType.swift in Sources */,
 				94BD19B72A92F34400B4881D /* InventoryItemView.swift in Sources */,
+				9490D8672AA7D6F700044EDB /* StorageType.swift in Sources */,
 				94BD19B92A92F44800B4881D /* InventoryViewModel.swift in Sources */,
 				94BD19B22A92ECB000B4881D /* InventoryItem.swift in Sources */,
 				94BD199E2A92E6D700B4881D /* ContentView.swift in Sources */,
@@ -254,6 +265,7 @@
 				94BD199C2A92E6D700B4881D /* PantryPalApp.swift in Sources */,
 				94BD19BD2A93D7D400B4881D /* NewInventoryItemFormSheetView.swift in Sources */,
 				94BD19B42A92ECEA00B4881D /* InventoryView.swift in Sources */,
+				9490D8692AA7D76500044EDB /* AmountRemaining.swift in Sources */,
 				9490D8442AA5854800044EDB /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
