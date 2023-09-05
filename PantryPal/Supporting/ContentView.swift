@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @FetchRequest(sortDescriptors: []) var inventoryItems: FetchedResults<InventoryItem>
+
     var body: some View {
             InventoryView()
     }
