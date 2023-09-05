@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct NewInventoryItemFormSheetView: View {
+struct CreateInventoryItemView: View {
     @EnvironmentObject var viewModel: InventoryViewModel
     @State private var name: String = ""
-    @State private var type: InventoryItem.ItemType = .snack
-    @State private var storage: InventoryItem.StorageType = .pantry
+    @State private var type: ItemType = .snack
+    @State private var storage: StorageType = .pantry
     
     var body: some View {
         NavigationView {
@@ -19,12 +19,12 @@ struct NewInventoryItemFormSheetView: View {
                 Section {
                     TextField("Type the item's name...", text: $name)
                     Picker("Select the food type", selection: $type) {
-                        ForEach(InventoryItem.ItemType.allCases) { item in
+                        ForEach(ItemType.allCases) { item in
                             Text(item.name)
                         }
                     }
                     Picker("Select the storage method", selection: $storage) {
-                        ForEach(InventoryItem.StorageType.allCases) { item in
+                        ForEach(StorageType.allCases) { item in
                             Text(item.name)
                         }
                     }
@@ -33,8 +33,8 @@ struct NewInventoryItemFormSheetView: View {
                     Button("Add to Inventory") {
                         viewModel.InventoryItems.append(InventoryItem(itemName: name, itemType: type, storageType: storage))
                         name = ""
-                        type = InventoryItem.ItemType.snack
-                        storage = InventoryItem.StorageType.pantry
+                        type = .snack
+                        storage = .pantry
                     }
                 }
             }
@@ -45,6 +45,6 @@ struct NewInventoryItemFormSheetView: View {
 
 struct NewInventoryItemFormSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        NewInventoryItemFormSheetView()
+        CreateInventoryItemView()
     }
 }

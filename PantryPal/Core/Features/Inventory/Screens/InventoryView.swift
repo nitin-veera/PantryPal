@@ -28,12 +28,6 @@ struct InventoryView: View {
     }
 }
 
-struct InventoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        InventoryView()
-    }
-}
-
 extension InventoryView {
     
     var searchAndNotis: some View {
@@ -94,7 +88,7 @@ extension InventoryView {
                         .frame(height: 3)
                 }
             }
-            ForEach(InventoryItem.StorageType.allCases, id: \.name) { storageType in
+            ForEach(StorageType.allCases, id: \.name) { storageType in
                 HStack {
                     VStack {
                         HStack {
@@ -134,12 +128,12 @@ extension InventoryView {
                     Button {
                         isPresentingItem = item
                     } label: {
-                        InventoryItemView(item: item)
+                        InventoryItemRowView(item: item)
                     }
                     . buttonStyle(PlainButtonStyle())
                 }
                 .sheet(item: $isPresentingItem) { item in
-                    InventoryItemInfoSheetView(item: item)
+                    InventoryItemDetailsView(item: item)
                         .presentationDetents([.height(300)])
                         .presentationDragIndicator(.visible)
                         .presentationCornerRadius(20)
@@ -161,10 +155,14 @@ extension InventoryView {
         .buttonStyle(SimpleButtonStyle())
         .padding()
         .sheet(isPresented: $isPresentingForm) {
-            NewInventoryItemFormSheetView()
+            CreateInventoryItemView()
             .presentationDetents([.medium])
             .presentationDragIndicator(.visible)
             .presentationCornerRadius(20)
         }
     }
+}
+
+#Preview {
+    InventoryView()
 }

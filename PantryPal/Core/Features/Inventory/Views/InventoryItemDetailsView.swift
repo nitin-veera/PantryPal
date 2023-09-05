@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InventoryItemInfoSheetView: View {
+struct InventoryItemDetailsView: View {
     private var item: InventoryItem
     
     init(item: InventoryItem) {
@@ -21,7 +21,7 @@ struct InventoryItemInfoSheetView: View {
 
 struct InventoryItemInfoSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryItemInfoSheetView(item: InventoryItem(itemName: "ice cream",
+        InventoryItemDetailsView(item: InventoryItem(itemName: "ice cream",
                                                        itemType: .dessert,
                                                        storageType: .freezer))
     }
