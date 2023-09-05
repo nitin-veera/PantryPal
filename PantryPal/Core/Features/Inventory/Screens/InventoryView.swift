@@ -18,61 +18,8 @@ struct InventoryView: View {
         ZStack(alignment: .bottomTrailing) {
             Color.element.ignoresSafeArea()
             VStack (alignment: .leading, spacing: 0){
-                searchAndNotis
-                titleAndSlider
-                    HStack {
-                        VStack {
-                            Text("All")
-                                .fontWeight(selectedFilter == "All" ? .semibold : .regular)
-                                .foregroundColor(selectedFilter == "All" ? .green : .black)
-                                .onTapGesture {
-                                    withAnimation(.easeInOut) {
-                                        self.selectedFilter = "All"
-                                    }
-                            }
-                            if selectedFilter == "All" {
-                                Capsule()
-                                    .foregroundColor(.green)
-                                    .frame(height: 3)
-                                    .matchedGeometryEffect(id: "filter", in: animation)
-                            } else {
-                                Capsule()
-                                    .foregroundColor(Color(.clear))
-                                    .frame(height: 3)
-                            }
-                        }
-                        ForEach(InventoryItem.StorageType.allCases, id: \.name) { storageType in
-                            HStack {
-                                VStack {
-                                    HStack {
-                                        Image(systemName: storageType.icon)
-                                        Text(storageType.name)
-                                    }
-                                    .fontWeight(selectedFilter == storageType.name ? .semibold : .regular)
-                                    .foregroundColor(selectedFilter == storageType.name ? .green : .black)
-                                    
-                                    if selectedFilter == storageType.name {
-                                        Capsule()
-                                            .foregroundColor(.green)
-                                            .frame(height: 3)
-                                            .matchedGeometryEffect(id: "filter", in: animation)
-                                    } else {
-                                        Capsule()
-                                            .foregroundColor(Color(.clear))
-                                            .frame(height: 3)
-                                    }
-                                }
-                                .onTapGesture {
-                                    withAnimation(.easeInOut) {
-                                        self.selectedFilter = storageType.name
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .font(.subheadline)
-                    .padding(.horizontal)
-                    .padding(.bottom, 0)
+                titleAndSearch
+                storageFilter
                 feedView
             }
             floatingButton
@@ -88,6 +35,97 @@ struct InventoryView_Previews: PreviewProvider {
 }
 
 extension InventoryView {
+    
+    var searchAndNotis: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .imageScale(.large)
+                .foregroundColor(.gray)
+            Spacer()
+            Image(systemName: "bell")
+                .imageScale(.large)
+                .foregroundColor(.gray)
+        }
+        .padding(.horizontal)
+    }
+    
+    var titleAndSlider: some View {
+        HStack {
+            Text("Inventory")
+                .font(.largeTitle).bold()
+            Spacer()
+            Image(systemName: "slider.horizontal.3")
+                .imageScale(.large)
+                .foregroundColor(.gray)
+        }
+        .padding()
+    }
+    
+    var titleAndSearch: some View {
+        HStack {
+            Text("Inventory")
+                .font(.largeTitle).bold()
+            Spacer()
+            Image(systemName: "magnifyingglass")
+                .imageScale(.large)
+                .foregroundColor(.gray)
+        }
+        .padding()
+    }
+    
+    var storageFilter: some View {
+        HStack {
+            VStack {
+                Text("All")
+                    .foregroundColor(selectedFilter == "All" ? .green : .black)
+                    .onTapGesture {
+                        withAnimation(.easeInOut) {
+                            self.selectedFilter = "All"
+                        }
+                }
+                if selectedFilter == "All" {
+                    Capsule()
+                        .foregroundColor(.green)
+                        .frame(height: 3)
+                        .matchedGeometryEffect(id: "filter", in: animation)
+                } else {
+                    Capsule()
+                        .foregroundColor(Color(.clear))
+                        .frame(height: 3)
+                }
+            }
+            ForEach(InventoryItem.StorageType.allCases, id: \.name) { storageType in
+                HStack {
+                    VStack {
+                        HStack {
+                            Image(systemName: storageType.icon)
+                            Text(storageType.name)
+                        }
+                        .foregroundColor(selectedFilter == storageType.name ? .green : .black)
+                        
+                        if selectedFilter == storageType.name {
+                            Capsule()
+                                .foregroundColor(.green)
+                                .frame(height: 3)
+                                .matchedGeometryEffect(id: "filter", in: animation)
+                        } else {
+                            Capsule()
+                                .foregroundColor(Color(.clear))
+                                .frame(height: 3)
+                        }
+                    }
+                    .onTapGesture {
+                        withAnimation(.easeInOut) {
+                            self.selectedFilter = storageType.name
+                        }
+                    }
+                }
+            }
+        }
+        .font(.subheadline)
+        .padding(.horizontal)
+        .padding(.bottom, 0)
+    }
     
     var feedView: some View {
         ScrollView {
@@ -107,34 +145,9 @@ extension InventoryView {
                         .presentationCornerRadius(20)
                 }
             }
-            .padding(.top)
+            .padding()
             
         }
-    }
-    
-    var searchAndNotis: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .imageScale(.large)
-                .foregroundColor(.gray)
-            Spacer()
-            Image(systemName: "bell")
-                .imageScale(.large)
-                .foregroundColor(.gray)
-        }
-        .padding(.horizontal)
-    }
-    
-    var titleAndSlider: some View {
-        HStack {
-            Text("Pantry")
-                .font(.largeTitle).bold()
-            Spacer()
-            Image(systemName: "slider.horizontal.3")
-                .imageScale(.large)
-                .foregroundColor(.gray)
-        }
-        .padding()
     }
     
     var floatingButton: some View {

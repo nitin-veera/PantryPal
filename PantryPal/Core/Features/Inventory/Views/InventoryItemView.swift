@@ -21,9 +21,10 @@ struct InventoryItemView: View {
                 .northWestShadow()
             HStack (spacing: 0) {
                 VStack {
-                    Image(systemName: "takeoutbag.and.cup.and.straw")
+                    Text(item.itemType.icon)
                         .padding(.vertical)
                         .padding(.leading)
+                        .font(.title)
                     Spacer()
                 }
                 VStack(alignment: .leading, spacing: 5) {
@@ -36,20 +37,9 @@ struct InventoryItemView: View {
                 .padding()
                 Spacer()
                 VStack(alignment: .trailing, spacing: 5) {
-                    switch (item.amountRemaining) {
-                    case .all:
-                        Text("Plenty Left")
-                            .font(.subheadline)
-                    case .half:
-                        Text("Halfway There")
-                            .font(.subheadline)
-                    case .few:
-                        Text("Almost Out")
-                            .font(.subheadline)
-                    case .none:
-                        Text("All Out")
-                            .font(.subheadline)
-                    }
+                    Text(item.amountRemaining.message)
+                        .font(.subheadline)
+                        .foregroundColor(item.amountRemaining.color)
                     Text("\(item.storageType.name)")
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -57,7 +47,6 @@ struct InventoryItemView: View {
                 .padding()
             }
         }
-        .padding(.horizontal)
     }
 }
 

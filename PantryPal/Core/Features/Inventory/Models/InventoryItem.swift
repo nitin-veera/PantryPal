@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct InventoryItem: Identifiable {
     let id: UUID
@@ -26,7 +27,7 @@ struct InventoryItem: Identifiable {
         self.expirationDate = expirationDate
         self.itemType = itemType
         self.storageType = storageType
-        self.amountRemaining = .all
+        self.amountRemaining = .full
     }
     
     enum ItemType: Int, CaseIterable, Identifiable {
@@ -40,6 +41,7 @@ struct InventoryItem: Identifiable {
         case meat
         case meal
         case snack
+        case dairy
         case dessert
         
         var name: String {
@@ -50,7 +52,21 @@ struct InventoryItem: Identifiable {
             case .meat: return "Meat"
             case .meal: return "Meal"
             case .snack: return "Snack"
+            case .dairy: return "Dairy"
             case .dessert: return "Dessert"
+            }
+        }
+        
+        var icon: String {
+            switch self {
+            case .spice: return "🧂"
+            case .fruit: return "🍇"
+            case .veggie: return "🥦"
+            case .meat: return "🥩"
+            case .meal: return "🍕"
+            case .snack: return "🥨"
+            case .dairy: return "🥛"
+            case .dessert: return "🍦"
             }
         }
     }
@@ -86,17 +102,26 @@ struct InventoryItem: Identifiable {
             return self
         }
         
-        case all
+        case full
         case half
-        case few
+        case some
         case none
         
-        var name: String {
+        var message: String {
             switch self {
-            case .all: return "All"
-            case .half: return "Half"
-            case .few: return "Few"
-            case .none: return "None"
+            case .full: return "Plenty left"
+            case .half: return "Halfway there"
+            case .some: return "Running low"
+            case .none: return "All out"
+            }
+        }
+        
+        var color: Color {
+            switch self {
+            case .full: return .green
+            case .half: return .yellow
+            case .some: return .orange
+            case .none: return .red
             }
         }
     }
