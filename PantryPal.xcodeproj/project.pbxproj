@@ -24,6 +24,8 @@
 		94BD19BB2A93D6C400B4881D /* InventoryItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD19BA2A93D6C400B4881D /* InventoryItemDetailsView.swift */; };
 		94BD19BD2A93D7D400B4881D /* CreateInventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD19BC2A93D7D400B4881D /* CreateInventoryItemView.swift */; };
 		94C6ECF22AA8084100FF4409 /* EditInventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6ECF12AA8084100FF4409 /* EditInventoryItemView.swift */; };
+		94C6ECF42AA8128400FF4409 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6ECF32AA8128400FF4409 /* PreviewSampleData.swift */; };
+		94C6ECF62AA8163100FF4409 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6ECF52AA8163100FF4409 /* CalendarExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		94BD19BA2A93D6C400B4881D /* InventoryItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItemDetailsView.swift; sourceTree = "<group>"; };
 		94BD19BC2A93D7D400B4881D /* CreateInventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInventoryItemView.swift; sourceTree = "<group>"; };
 		94C6ECF12AA8084100FF4409 /* EditInventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInventoryItemView.swift; sourceTree = "<group>"; };
+		94C6ECF32AA8128400FF4409 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
+		94C6ECF52AA8163100FF4409 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 				9490D8412AA5852900044EDB /* ViewExtension.swift */,
 				9490D8432AA5854800044EDB /* ColorExtension.swift */,
 				9490D8462AA5980D00044EDB /* ButtonStyles.swift */,
+				94C6ECF52AA8163100FF4409 /* CalendarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			children = (
 				94BD199B2A92E6D700B4881D /* PantryPalApp.swift */,
 				94BD199D2A92E6D700B4881D /* ContentView.swift */,
+				94C6ECF32AA8128400FF4409 /* PreviewSampleData.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94C6ECF42AA8128400FF4409 /* PreviewSampleData.swift in Sources */,
 				9490D8472AA5980D00044EDB /* ButtonStyles.swift in Sources */,
 				9490D8422AA5852900044EDB /* ViewExtension.swift in Sources */,
 				9490D8652AA7D6B400044EDB /* ItemType.swift in Sources */,
@@ -270,6 +277,7 @@
 				94BD19BD2A93D7D400B4881D /* CreateInventoryItemView.swift in Sources */,
 				94BD19B42A92ECEA00B4881D /* InventoryView.swift in Sources */,
 				9490D8692AA7D76500044EDB /* AmountRemaining.swift in Sources */,
+				94C6ECF62AA8163100FF4409 /* CalendarExtension.swift in Sources */,
 				9490D8442AA5854800044EDB /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

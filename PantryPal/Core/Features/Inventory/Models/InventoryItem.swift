@@ -27,3 +27,10 @@ final class InventoryItem {
         self.amountRemaining = .full
     }
 }
+
+extension InventoryItem {
+    var numDaysIn: Int {
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.numberOfDaysBetween(purchaseDate, and: Date.now)
+    }
+}

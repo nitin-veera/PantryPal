@@ -24,7 +24,7 @@ struct InventoryItemRowView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("\(item.itemName)")
                     .font(.title3).bold()
-                Text("3 days in")
+                Text(item.numDaysIn > 0 ? "\(item.numDaysIn) days in" : "first day in")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }

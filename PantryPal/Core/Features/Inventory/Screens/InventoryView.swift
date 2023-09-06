@@ -9,6 +9,22 @@ import SwiftData
 import SwiftUI
 
 struct InventoryView: View {
+    var body: some View {
+        NavigationStack {
+            ZStack(alignment: .bottomTrailing) {
+                Color.element.ignoresSafeArea()
+                VStack (alignment: .leading, spacing: 0){
+                    storageFilterBar
+                    feedView
+                }
+                floatingButton
+            }
+            .navigationBarTitle("Inventory")
+            .searchable(text: $searchQuery, placement: .navigationBarDrawer, prompt: "Search for an item")
+        }
+        .environmentObject(viewModel)
+    }
+    
     @StateObject var viewModel = InventoryViewModel()
     @Query private var items: [InventoryItem]
     @State private var isPresentingItem: InventoryItem? = nil
@@ -39,23 +55,6 @@ struct InventoryView: View {
         
         return filteredItems
     }
-    
-    var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
-                Color.element.ignoresSafeArea()
-                VStack (alignment: .leading, spacing: 0){
-                    // titleAndSearch
-                    storageFilter
-                    feedView
-                }
-                floatingButton
-            }
-            .navigationBarTitle("Inventory")
-            .searchable(text: $searchQuery, placement: .navigationBarDrawer, prompt: "Search for an item")
-        }
-        .environmentObject(viewModel)
-    }
 }
 
 extension InventoryView {
@@ -73,31 +72,7 @@ extension InventoryView {
         .padding(.horizontal)
     }
     
-    var titleAndSlider: some View {
-        HStack {
-            Text("Inventory")
-                .font(.largeTitle).bold()
-            Spacer()
-            Image(systemName: "slider.horizontal.3")
-                .imageScale(.large)
-                .foregroundColor(.gray)
-        }
-        .padding()
-    }
-    
-    var titleAndSearch: some View {
-        HStack {
-            Text("Inventory")
-                .font(.largeTitle).bold()
-            Spacer()
-            Image(systemName: "magnifyingglass")
-                .imageScale(.large)
-                .foregroundColor(.gray)
-        }
-        .padding()
-    }
-    
-    var storageFilter: some View {
+    var storageFilterBar: some View {
         HStack {
             VStack {
                 Text("All")
