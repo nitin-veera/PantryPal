@@ -14,17 +14,45 @@ struct InventoryView: View {
     @State private var isPresentingItem: InventoryItem? = nil
     @State private var isPresentingForm: Bool = false
     @State private var selectedFilter: String = "All"
+    @State private var searchQuery = ""
     @Namespace var animation
     
-    var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            Color.element.ignoresSafeArea()
-            VStack (alignment: .leading, spacing: 0){
-                titleAndSearch
-                storageFilter
-                feedView
+    var filteredItems: [InventoryItem] {
+        if searchQuery.isEmpty {
+            if selectedFilter == "All" { return items }
+            let filteredItems = items.compactMap { item in
+                return item.storageType.name == selectedFilter ? item : nil
             }
-            floatingButton
+            return filteredItems
+        }
+        
+        let filteredItems = items.compactMap { item in
+            let nameContainsQuery = item.itemName.range(of: searchQuery, options: .caseInsensitive) != nil
+            var storageTypeMatches = false
+            if selectedFilter == "All" {
+                storageTypeMatches = true
+            } else if(item.storageType.name == selectedFilter) {
+                storageTypeMatches = true
+            }
+            return (nameContainsQuery && storageTypeMatches) ? item : nil
+        }
+        
+        return filteredItems
+    }
+    
+    var body: some View {
+        NavigationStack {
+            ZStack(alignment: .bottomTrailing) {
+                Color.element.ignoresSafeArea()
+                VStack (alignment: .leading, spacing: 0){
+                    // titleAndSearch
+                    storageFilter
+                    feedView
+                }
+                floatingButton
+            }
+            .navigationBarTitle("Inventory")
+            .searchable(text: $searchQuery, placement: .navigationBarDrawer, prompt: "Search for an item")
         }
         .environmentObject(viewModel)
     }
@@ -125,7 +153,7 @@ extension InventoryView {
     
     var feedView: some View {
         List {
-            ForEach(items) { item in
+            ForEach(filteredItems) { item in
                 InventoryItemRowView(item: item)
                 .contentShape(RoundedRectangle(cornerRadius: 20))
                 .onTapGesture {
@@ -148,24 +176,26 @@ extension InventoryView {
         .padding()
         .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
-
     }
     
     var floatingButton: some View {
-        Button(action: {
-            isPresentingForm.toggle()
-        }) {
-            Image(systemName: "plus")
-                .imageScale(.large)
-                .foregroundColor(.green)
-        }
-        .buttonStyle(SimpleButtonStyle())
-        .padding()
-        .sheet(isPresented: $isPresentingForm) {
-            CreateInventoryItemView()
-            .presentationDetents([.medium])
-            .presentationDragIndicator(.visible)
-            .presentationCornerRadius(20)
+        VStack {
+            Spacer()
+            Button(action: {
+                isPresentingForm.toggle()
+            }) {
+                Image(systemName: "plus")
+                    .imageScale(.large)
+                    .foregroundColor(.green)
+            }
+            .buttonStyle(SimpleButtonStyle())
+            .padding()
+            .sheet(isPresented: $isPresentingForm) {
+                CreateInventoryItemView()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(20)
+            }
         }
     }
 }

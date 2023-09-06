@@ -9,12 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct InventoryItemRowView: View {
-    var item: InventoryItem
     @Environment(\.modelContext) var context
     
-    init(item: InventoryItem) {
-        self.item = item
-    }
+    @Bindable var item: InventoryItem
     
     var body: some View {
         HStack (alignment: .top, spacing: 0) {
