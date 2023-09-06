@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import SwiftUI
+import SwiftData
 
-struct InventoryItem: Identifiable {
-    let id: UUID
+@Model
+final class InventoryItem {
     var itemName: String
     var purchaseDate: Date
     var itemType: ItemType
@@ -18,8 +18,8 @@ struct InventoryItem: Identifiable {
     
     init(itemName: String,
          itemType: ItemType,
-         storageType: StorageType) {
-        self.id = UUID()
+         storageType: StorageType
+    ) {
         self.itemName = itemName
         self.purchaseDate = Date.now
         self.itemType = itemType

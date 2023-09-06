@@ -6,55 +6,59 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct InventoryItemRowView: View {
     var item: InventoryItem
+    @Environment(\.modelContext) var context
     
     init(item: InventoryItem) {
         self.item = item
     }
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color.element)
-                .northWestShadow()
-            HStack (spacing: 0) {
-                VStack {
-                    Text(item.itemType.icon)
-                        .padding(.vertical)
-                        .padding(.leading)
-                        .font(.title)
-                    Spacer()
-                }
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("\(item.itemName)")
-                        .font(.title3).bold()
-                    Text("3 days in")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                .padding()
+        HStack (alignment: .top, spacing: 0) {
+            VStack {
+                Text(item.itemType.icon)
+                    .font(.title)
+                    .padding(.top)
                 Spacer()
-                VStack(alignment: .trailing, spacing: 5) {
-                    Text(item.amountRemaining.message)
-                        .font(.subheadline)
-                        .foregroundColor(item.amountRemaining.color)
-                    Text("\(item.storageType.name)")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+            }
+            VStack(alignment: .leading, spacing: 5) {
+                Text("\(item.itemName)")
+                    .font(.title3).bold()
+                Text("3 days in")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+            .padding([.leading, .top])
+            Spacer()
+            VStack(alignment: .trailing, spacing: 5) {
+                Text(item.amountRemaining.message)
+                    .font(.subheadline)
+                    .foregroundColor(item.amountRemaining.color)
+                Text("\(item.storageType.name)")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+            .padding(.top)
+        }
+        .swipeActions {
+            Button(role: .destructive) {
+                withAnimation {
+                    context.delete(item)
                 }
-                .padding()
+            } label: {
+                Label("Delete", systemImage:"trash")
+                    .symbolVariant(.fill)
             }
         }
     }
 }
 
-struct InventoryItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        InventoryItemRowView(item: InventoryItem(itemName: "ice cream",
-                                              itemType: .dessert,
-                                              storageType: .freezer)
-        )
-    }
+#Preview {
+    InventoryItemRowView(item: InventoryItem(itemName: "ice cream",
+                                          itemType: .dessert,
+                                          storageType: .freezer)
+    )
 }

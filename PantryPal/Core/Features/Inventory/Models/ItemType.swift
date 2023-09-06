@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ItemType: Int, CaseIterable, Identifiable {
+enum ItemType: Int, CaseIterable, Identifiable, Codable {
     var id: Self {
         return self
     }

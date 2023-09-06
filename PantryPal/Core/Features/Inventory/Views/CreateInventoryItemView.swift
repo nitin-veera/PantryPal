@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct CreateInventoryItemView: View {
-    @EnvironmentObject var viewModel: InventoryViewModel
-    @State private var name: String = ""
-    @State private var type: ItemType = .snack
-    @State private var storage: StorageType = .pantry
+    @State private var item = InventoryItem(itemName: "", itemType: .snack, storageType: .pantry)
+    @Environment(\.modelContext) var context
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Type the item's name...", text: $name)
-                    Picker("Select the food type", selection: $type) {
+                    TextField("Type the item's name...", text: $item.itemName)
+                    Picker("Select the food type", selection: $item.itemType) {
                         ForEach(ItemType.allCases) { item in
                             Text(item.name)
                         }
                     }
-                    Picker("Select the storage method", selection: $storage) {
+                    Picker("Select the storage method", selection: $item.storageType) {
                         ForEach(StorageType.allCases) { item in
                             Text(item.name)
                         }
@@ -31,10 +29,9 @@ struct CreateInventoryItemView: View {
                 }
                 Section {
                     Button("Add to Inventory") {
-                        viewModel.InventoryItems.append(InventoryItem(itemName: name, itemType: type, storageType: storage))
-                        name = ""
-                        type = .snack
-                        storage = .pantry
+                        withAnimation {
+                            context.insert(item)
+                        }
                     }
                 }
             }
@@ -43,8 +40,7 @@ struct CreateInventoryItemView: View {
     }
 }
 
-struct NewInventoryItemFormSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateInventoryItemView()
-    }
+#Preview {
+    CreateInventoryItemView()
+        .modelContainer(for: InventoryItem.self)
 }

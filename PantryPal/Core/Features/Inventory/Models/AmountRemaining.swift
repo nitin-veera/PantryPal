@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum AmountRemaining: Int, CaseIterable, Identifiable {
+enum AmountRemaining: Int, CaseIterable, Identifiable, Codable {
     var id: Self {
         return self
     }

@@ -5,10 +5,12 @@
 //  Created by Nitin Veeraperumal on 8/20/23.
 //
 
+import SwiftData
 import SwiftUI
 
 struct InventoryView: View {
     @StateObject var viewModel = InventoryViewModel()
+    @Query private var items: [InventoryItem]
     @State private var isPresentingItem: InventoryItem? = nil
     @State private var isPresentingForm: Bool = false
     @State private var selectedFilter: String = "All"
@@ -122,26 +124,31 @@ extension InventoryView {
     }
     
     var feedView: some View {
-        ScrollView {
-            LazyVStack(spacing: 10) {
-                ForEach(viewModel.InventoryItems, id: \.id) { item in
-                    Button {
-                        isPresentingItem = item
-                    } label: {
-                        InventoryItemRowView(item: item)
-                    }
-                    . buttonStyle(PlainButtonStyle())
-                }
-                .sheet(item: $isPresentingItem) { item in
-                    InventoryItemDetailsView(item: item)
-                        .presentationDetents([.height(300)])
-                        .presentationDragIndicator(.visible)
-                        .presentationCornerRadius(20)
+        List {
+            ForEach(items) { item in
+                InventoryItemRowView(item: item)
+                .contentShape(RoundedRectangle(cornerRadius: 20))
+                .onTapGesture {
+                    isPresentingItem = item
                 }
             }
-            .padding()
-            
+            .listRowBackground(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.white)
+                    .padding(.vertical, 4)
+            )
+            .listRowSeparator(.hidden)
+            .sheet(item: $isPresentingItem) { item in
+                InventoryItemDetailsView(item: item)
+                    .presentationDetents([.height(300)])
+                    .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(20)
+            }
         }
+        .padding()
+        .listStyle(PlainListStyle())
+        .scrollContentBackground(.hidden)
+
     }
     
     var floatingButton: some View {
