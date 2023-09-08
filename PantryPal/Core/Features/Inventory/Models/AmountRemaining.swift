@@ -20,6 +20,15 @@ enum AmountRemaining: Int, CaseIterable, Identifiable, Codable {
 }
 
 extension AmountRemaining {
+    var name: String {
+        switch self {
+        case .full: return "All"
+        case .half: return "Half"
+        case .some: return "Some"
+        case .none: return "None"
+        }
+    }
+    
     var message: String {
         switch self {
         case .full: return "Plenty left"

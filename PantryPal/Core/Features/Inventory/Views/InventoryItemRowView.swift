@@ -10,7 +10,6 @@ import SwiftData
 
 struct InventoryItemRowView: View {
     @Environment(\.modelContext) var context
-    
     @Bindable var item: InventoryItem
     
     var body: some View {

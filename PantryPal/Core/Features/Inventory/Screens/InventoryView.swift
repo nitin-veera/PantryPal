@@ -27,8 +27,9 @@ struct InventoryView: View {
     
     @StateObject var viewModel = InventoryViewModel()
     @Query private var items: [InventoryItem]
-    @State private var isPresentingItem: InventoryItem? = nil
-    @State private var isPresentingForm: Bool = false
+    @State private var isPresentingUpdateItem: InventoryItem? = nil
+    @State private var isPresentingCreateItem: Bool = false
+    @State private var isPresentingEdit: Bool = false
     @State private var selectedFilter: String = "All"
     @State private var searchQuery = ""
     @Namespace var animation
@@ -132,7 +133,7 @@ extension InventoryView {
                 InventoryItemRowView(item: item)
                 .contentShape(RoundedRectangle(cornerRadius: 20))
                 .onTapGesture {
-                    isPresentingItem = item
+                    isPresentingUpdateItem = item
                 }
             }
             .listRowBackground(
@@ -141,10 +142,12 @@ extension InventoryView {
                     .padding(.vertical, 4)
             )
             .listRowSeparator(.hidden)
-            .sheet(item: $isPresentingItem) { item in
-                InventoryItemDetailsView(item: item)
-                    .presentationDetents([.height(300)])
-                    .presentationDragIndicator(.visible)
+            .sheet(item: $isPresentingUpdateItem) {
+                isPresentingUpdateItem = nil
+            } content: { item in
+                UpdateInventoryItemView(item: item)
+                    .presentationDetents([.height(250)])
+                    .presentationDragIndicator(.hidden)
                     .presentationCornerRadius(20)
             }
         }
@@ -157,7 +160,7 @@ extension InventoryView {
         VStack {
             Spacer()
             Button(action: {
-                isPresentingForm.toggle()
+                isPresentingCreateItem.toggle()
             }) {
                 Image(systemName: "plus")
                     .imageScale(.large)
@@ -165,10 +168,10 @@ extension InventoryView {
             }
             .buttonStyle(SimpleButtonStyle())
             .padding()
-            .sheet(isPresented: $isPresentingForm) {
+            .sheet(isPresented: $isPresentingCreateItem) {
                 CreateInventoryItemView()
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
+                    .presentationDetents([.height(300)])
+                .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(20)
             }
         }
